@@ -3,16 +3,54 @@ import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Star, Truck, Award, DollarSign, Building2, ArrowRight } from 'lucide-react'
-import Navbar from '@/components/navbar'
-import Hero from '@/components/homepage/hero'
+import { ShoppingCart, Star, Truck, Award, DollarSign, Building2, ArrowRight } from 'lucide-react'
 
 export default function Homepage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
+      <header className="bg-white shadow-sm">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/actr-logo-aprUNrsXP9YxAb3szaozhjlhExIqpg.png"
+            alt="ACTR Medical Logo"
+            width={200}
+            height={50}
+          />
+          <nav className="hidden md:block">
+            <ul className="flex space-x-6">
+              <li><Link href="#" className="text-gray-600 hover:text-blue-600">Home</Link></li>
+              <li><Link href="#" className="text-gray-600 hover:text-blue-600">Products</Link></li>
+              <li><Link href="#" className="text-gray-600 hover:text-blue-600">About Us</Link></li>
+              <li><Link href="#" className="text-gray-600 hover:text-blue-600">Blog</Link></li>
+              <li><Link href="#" className="text-gray-600 hover:text-blue-600">Contact</Link></li>
+            </ul>
+          </nav>
+          <Button className="md:hidden">Menu</Button>
+        </div>
+      </header>
+
       <main>
-        <Hero />
+        {/* Hero Section */}
+        <section className="bg-blue-600 text-white py-20">
+          <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div className="md:w-1/2 mb-10 md:mb-0">
+              <h1 className="text-4xl font-bold mb-4">Your Trusted Partner in Medical Disposable Solutions</h1>
+              <p className="text-xl mb-8">Quality, reliable, and certified disposable medical equipment for healthcare professionals.</p>
+              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+                Explore Our Products <ShoppingCart className="ml-2" />
+              </Button>
+            </div>
+            <div className="md:w-1/2">
+              <Image
+                src="/placeholder.svg?height=400&width=600"
+                alt="Healthcare professionals using disposable equipment"
+                width={600}
+                height={400}
+                className="rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
+        </section>
 
         {/* Product Categories */}
         <section className="py-16">
@@ -113,7 +151,7 @@ export default function Homepage() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="mb-4">&quot;{testimonial.text}&quot;</p>
+                    <p className="mb-4">"{testimonial.text}"</p>
                     <p className="font-semibold">{testimonial.name}</p>
                     <p className="text-sm text-gray-600">{testimonial.role}</p>
                   </CardContent>
