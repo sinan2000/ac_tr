@@ -2,3 +2,30 @@
 making an order mail
 - schema for newsletter, when added new mail use a webhook
 for setting api to send a mail to everyone from newsletter
+
+v1 to do
+--------
+0a. recheck all content - for headers, use montserrat font;
+0b. breadcrumbs setup on all pages, make component
+1. create services dynamic page + generateStaticParams
+2. finish about us pages + create about us dynamic page + generateStaticParams
+3. make services a dropdown with all items
+4. make contact, loading and not found pages
+5. create categories and products schema
+6. create products page* - also add customizable tags for each,
+eg. size, color, etc.
+7. fill up all homepage sections
+8. finish setting up studio
+9. seo, metadata, jsonld.
+10. newsletter sending mail action
+11. optimization - webhook for sending mail, another webhook for tag revalidation
+on pages.
+12. favicon
+13. localization - turkish and french
+* products - categories - then products
+
+v2 to do
+--------
+1. cart functionality
+2. online payments
+3. visual content edit real time
