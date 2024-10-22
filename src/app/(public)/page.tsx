@@ -3,34 +3,15 @@ import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { ShoppingCart, Star, Truck, Award, DollarSign, Building2, ArrowRight } from 'lucide-react'
+import { Star, Truck, Award, DollarSign, Building2, ArrowRight } from 'lucide-react'
+import Hero from '@/components/homepage/hero'
 
 export default function Homepage() {
   return (
     <div className="min-h-screen bg-gray-50">
 
       <main>
-        {/* Hero Section */}
-        <section className="bg-blue-600 text-white py-20">
-          <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-10 md:mb-0">
-              <h1 className="text-4xl font-bold mb-4 font-montserrat">Your Trusted Partner in Medical Disposable Solutions</h1>
-              <p className="text-xl mb-8">Quality, reliable, and certified disposable medical equipment for healthcare professionals.</p>
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
-                Explore Our Products <ShoppingCart className="ml-2" />
-              </Button>
-            </div>
-            <div className="md:w-1/2">
-              <Image
-                src="/placeholder.svg?height=400&width=600"
-                alt="Healthcare professionals using disposable equipment"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </section>
+        <Hero />
 
         {/* Product Categories */}
         <section className="py-16">

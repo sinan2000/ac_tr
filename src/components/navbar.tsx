@@ -1,4 +1,4 @@
-import { getNavbarData } from "@/lib/queries";
+import { getNavbarData } from "@/sanity/lib/queries";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
