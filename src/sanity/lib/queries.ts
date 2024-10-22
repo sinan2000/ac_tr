@@ -55,3 +55,20 @@ export async function getHeroSectionData() {
     })) || []
   };
 };
+
+export async function getChooseUsData() {
+  const query = `*[_type == "whyChooseUs"][0]{
+    title,
+    cards[]{
+      cardTitle,
+      cardDescription
+    }
+  }`;
+
+  const chooseUs = await client.fetch(query, {}, options);
+
+  return {
+    title: chooseUs?.title || '',
+    cards: chooseUs?.cards || []
+  }
+}
