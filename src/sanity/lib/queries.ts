@@ -103,3 +103,19 @@ export async function getAboutUsData() {
   const aboutUsData = await client.fetch(query, {}, options);
   return aboutUsData;
 }
+
+export async function getServicesData() {
+  const query = `*[_type == "service"]{
+    title,
+    description,
+    images[]{
+      asset->{
+        url
+      }
+    }
+  }`;
+
+  const services = await client.fetch(query, {}, options);
+  console.log(services);
+  return services;
+}

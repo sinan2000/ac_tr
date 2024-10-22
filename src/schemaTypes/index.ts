@@ -6,8 +6,9 @@ import { homePage } from "./homePage";
 import { navbar } from "./navbar";
 import { newsletter } from "./newsletter";
 import { newsletterSignup } from "./newsletterSignup";
+import { services } from "./servicesPage";
 import { whyChooseUs } from "./whyChooseUs";
 
 export const schemaTypes = [homePage, navbar, footer, heroSection, whyChooseUs, aboutUs,
-    newsletter, newsletterSignup, aboutUsPage
+    newsletter, newsletterSignup, aboutUsPage, services
 ];
