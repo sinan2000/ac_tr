@@ -7,6 +7,14 @@ const nextConfig = {
                 hostname: 'cdn.sanity.io',
             }
         ]
+    },
+    async rewrites() {
+        return [
+            {
+                source: '/admin/intent/:path*',
+                destination: '/admin',
+            }
+        ]
     }
 };
 

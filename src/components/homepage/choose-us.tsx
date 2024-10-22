@@ -1,4 +1,4 @@
-import { getChooseUsData } from "@/sanity/lib/queries";
+import { getHomepageData } from "@/sanity/lib/queries";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Truck, Award, DollarSign, Building2 } from 'lucide-react'
 import { SanityDocument } from "next-sanity";
@@ -7,7 +7,10 @@ import React from "react";
 const icons = [Award, Truck, DollarSign, Building2];
 
 export default async function ChooseUs() {
-    const { title, cards } = await getChooseUsData();
+    const { whyChooseUs } = await getHomepageData();
+
+    const title = whyChooseUs?.title || '';
+    const cards = whyChooseUs?.cards || [];
 
     return (
         <section className="bg-gray-100 py-16">

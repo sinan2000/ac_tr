@@ -32,57 +32,57 @@ export async function getNavbarData() {
   }
 }
 
-export async function getHeroSectionData() {
-  const query = `*[_type == "heroSection"][0]{
+export async function getHomepageData() {
+  const query = `*[_type == "homePage"][0]{
     title,
-    subtitle,
-    images[]{
-      asset->{
+    heroSection->{
+      title,
+      subtitle,
+      images[]{
+        asset->{
+          url
+        }
+      }
+    },
+    whyChooseUs->{
+      title,
+      cards[]{
+        cardTitle,
+        cardDescription
+      }
+    },
+    aboutUs->{
+      title,
+      description,
+      button{
+        text,
         url
-      },
-      alt
+      }
     }
   }`;
 
-  const heroSection = await client.fetch(query, {}, options);
-
-  return {
-    title: heroSection?.title || '',
-    subtitle: heroSection?.subtitle || '',
-    images: heroSection?.images?.map((img: SanityDocument) => ({
-      src: img.asset.url,
-      alt: img.alt || 'Hero Image'
-    })) || []
-  };
-};
-
-export async function getChooseUsData() {
-  const query = `*[_type == "whyChooseUs"][0]{
-    title,
-    cards[]{
-      cardTitle,
-      cardDescription
-    }
-  }`;
-
-  const chooseUs = await client.fetch(query, {}, options);
-
-  return {
-    title: chooseUs?.title || '',
-    cards: chooseUs?.cards || []
-  }
+  const homePageData = await client.fetch(query, {}, options);
+  return homePageData;
 }
 
-export async function getAboutUsData() {
-  const query = `*[_type == "aboutUs"][0]{
-    title,
-    description,
-    button{
-      text,
+export async function getFooterData() {
+  const query = `*[_type == "footer"][0]{
+    quickLinks[]{
+      name,
+      link
+    },
+    contactUs {
+      address,
+      phone,
+      email
+    },
+    socialLinks[]{
+      platform,
       url
     }
   }`;
 
-  const aboutUs = await client.fetch(query, {}, options);
-  return aboutUs;
+  const footerData = await client.fetch(query, {}, options);
+  console.log(footerData);
+  return footerData;
 }

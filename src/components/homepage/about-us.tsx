@@ -1,10 +1,12 @@
-import { getAboutUsData } from "@/sanity/lib/queries";
+import { getHomepageData } from "@/sanity/lib/queries";
 import { Button } from "../ui/button";
 import { PortableText } from "next-sanity";
 import Link from "next/link";
 
 export default async function AboutUs() {
-    const { title, description, button } = await getAboutUsData();
+    const { aboutUs } = await getHomepageData();
+    
+    const { title, description, button } = aboutUs;
 
     return (
         <section className="py-16">

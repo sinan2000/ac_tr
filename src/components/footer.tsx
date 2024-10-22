@@ -1,8 +1,25 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaWhatsapp } from 'react-icons/fa';
+import { getFooterData } from "@/sanity/lib/queries";
+import { SanityDocument } from "next-sanity";
 
 export default async function Footer() {
+    const data = await getFooterData();
+
+    const links = data.quickLinks;
+    const contact = data.contactUs;
+    const social = data.socialLinks;
+
+    const socialMap = {
+        facebook: FaFacebook,
+        instagram: FaInstagram,
+        linkedin: FaLinkedin,
+        youtube: FaYoutube,
+        whatsapp: FaWhatsapp
+    }
+
     return (
         <footer className="bg-gray-800 text-white py-12">
             <div className="container mx-auto px-4">
@@ -10,26 +27,33 @@ export default async function Footer() {
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
                         <ul className="space-y-2">
-                            <li><Link href="#" className="hover:text-blue-400">Home</Link></li>
-                            <li><Link href="#" className="hover:text-blue-400">Products</Link></li>
-                            <li><Link href="#" className="hover:text-blue-400">About Us</Link></li>
-                            <li><Link href="#" className="hover:text-blue-400">Blog</Link></li>
-                            <li><Link href="#" className="hover:text-blue-400">Contact</Link></li>
+                            {links.map((link: SanityDocument, index: number) => (
+                                <li key={index}>
+                                    <Link href={link.link} className="hover:text-blue-400">
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
+
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-                        <p>1234 Medical Drive</p>
-                        <p>Health City, HC 12345</p>
-                        <p>Phone: (123) 456-7890</p>
-                        <p>Email: info@actrmedical.com</p>
+                        <p>{contact.address}</p>
+                        <p>Phone: {contact.phone}</p>
+                        <p>Email: {contact.email}</p>
                     </div>
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
                         <div className="flex space-x-4">
-                            <a href="#" className="hover:text-blue-400">Facebook</a>
-                            <a href="#" className="hover:text-blue-400">Twitter</a>
-                            <a href="#" className="hover:text-blue-400">LinkedIn</a>
+                            {social.map((link: SanityDocument, index: number) => {
+                                const IconComponent = socialMap[link.platform as keyof typeof socialMap];
+                                return (
+                                    <Link key={index} href={link.url} className="hover:text-blue-400" target="_blank" rel="noopener noreferrer">
+                                        <IconComponent className="w-6 h-6" />
+                                    </Link>
+                                )
+                            })}
                         </div>
                     </div>
                     <div>
@@ -41,7 +65,7 @@ export default async function Footer() {
                     </div>
                 </div>
                 <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-                    <p>&copy; 2023 ACTR Medical. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} ACTR Medical. All rights reserved.</p>
                 </div>
             </div>
         </footer>

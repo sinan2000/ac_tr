@@ -7,10 +7,16 @@ export const navbar = defineType({
     type: 'document',
     fields: [
         defineField({
+            name: 'name',
+            title: 'Navbar Name',
+            type: 'string',
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
             name: 'logo',
             title: 'Logo',
             type: 'image',
-            options: { hotspot: true }, // Allows for better image cropping.
+            options: { hotspot: true },
         }),
         defineField({
             name: 'menuItems',
@@ -29,8 +35,7 @@ export const navbar = defineType({
                         defineField({
                             name: 'link',
                             title: 'Link',
-                            type: 'url', // Optional: Set to internal link logic
-                            hidden: ({ parent }) => !!parent?.dropdownItems, // Hide link field if it's a dropdown
+                            type: 'url', // Can be set to internal link logic as well.
                         }),
                         defineField({
                             name: 'dropdownItems',
@@ -54,18 +59,11 @@ export const navbar = defineType({
                                     ],
                                 },
                             ],
-                            hidden: ({ parent }) => !!parent?.link, // Hide dropdown if it's a direct link
-                        }),
-                        defineField({
-                            name: 'order',
-                            title: 'Order',
-                            type: 'number',
-                            validation: (Rule) => Rule.required().min(1),
                         }),
                     ],
                 },
             ],
-            options: { sortable: true }, // Allow sorting
+            options: { sortable: true }, // Allows sorting within the array.
         }),
     ],
 });

@@ -1,11 +1,18 @@
-import Image from "next/image";
 import { Button } from "../ui/button";
 import { ArrowRight, ShoppingCart } from "lucide-react";
 import HeroImages from "./hero-images";
-import { getHeroSectionData } from "@/sanity/lib/queries";
+import { getHomepageData } from "@/sanity/lib/queries";
+import { SanityDocument } from "next-sanity";
 
 export default async function Hero() {
-    const { title, subtitle, images } = await getHeroSectionData();
+    const { heroSection } = await getHomepageData();
+
+    const title = heroSection?.title || '';
+    const subtitle = heroSection?.subtitle || '';
+    const images = heroSection?.images?.map((img: SanityDocument, index: number) => ({
+        src: img.asset.url,
+        alt: img.alt || `Hero Image ${index + 1}`
+    })) || [];
 
     return (
         <section className="relative bg-blue-600 text-white py-20 overflow-hidden">
