@@ -1,7 +1,3 @@
-import { featuredProducts } from './featuredProducts'
-import { heroSection } from './heroSection'
-import { menuItem } from './menuItem'
-import { productCategory } from './productCategory'
-import { product } from './productSchema'
+import { navbar } from "./navbar";
 
-export const schemaTypes = [featuredProducts, heroSection, menuItem, productCategory, product]
+export const schemaTypes = [navbar];

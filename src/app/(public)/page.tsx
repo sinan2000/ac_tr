@@ -8,26 +8,6 @@ import { ShoppingCart, Star, Truck, Award, DollarSign, Building2, ArrowRight } f
 export default function Homepage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Image
-            src="/logo.png"
-            alt="ACTR Medical Logo"
-            width={200}
-            height={50}
-          />
-          <nav className="hidden md:block">
-            <ul className="flex space-x-6">
-              <li><Link href="#" className="text-gray-600 hover:text-blue-600">Home</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-blue-600">Products</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-blue-600">About Us</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-blue-600">Blog</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-blue-600">Contact</Link></li>
-            </ul>
-          </nav>
-          <Button className="md:hidden">Menu</Button>
-        </div>
-      </header>
 
       <main>
         {/* Hero Section */}
