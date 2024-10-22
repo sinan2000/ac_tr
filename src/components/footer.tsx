@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaWhatsapp } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaWhatsapp, FaMapMarkerAlt, FaPhone, FaMailBulk } from 'react-icons/fa';
 import { getFooterData } from "@/sanity/lib/queries";
 import { SanityDocument } from "next-sanity";
+import Newsletter from "./homepage/newsletter";
 
 export default async function Footer() {
     const data = await getFooterData();
@@ -39,9 +40,18 @@ export default async function Footer() {
 
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-                        <p>{contact.address}</p>
-                        <p>Phone: {contact.phone}</p>
-                        <p>Email: {contact.email}</p>
+                        <div className="flex items-center mb-3">
+                            <FaMapMarkerAlt className="w-6 h-6 mr-2" />
+                            <p>{contact.address}</p>
+                        </div>
+                        <div className="flex items-center mb-3">
+                            <FaPhone className="w-6 h-6 mr-2" />
+                            <p>{contact.phone}</p>
+                        </div>
+                        <div className="flex items-center">
+                            <FaMailBulk className="w-6 h-6 mr-2" />
+                            <p>{contact.email}</p>
+                        </div>
                     </div>
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
@@ -58,10 +68,7 @@ export default async function Footer() {
                     </div>
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
-                        <form className="flex flex-col gap-4">
-                            <Input type="email" placeholder="Enter your email" className="bg-gray-700 text-white" />
-                            <Button type="submit" variant="secondary">Subscribe</Button>
-                        </form>
+                        <Newsletter />
                     </div>
                 </div>
                 <div className="border-t border-gray-700 mt-8 pt-8 text-center">

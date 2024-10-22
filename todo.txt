@@ -1,0 +1,4 @@
+- schema for mail, eg sign up mail, subscribing to newsletter mail,
+making an order mail
+- schema for newsletter, when added new mail use a webhook
+for setting api to send a mail to everyone from newsletter

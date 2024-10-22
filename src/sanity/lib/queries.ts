@@ -83,6 +83,6 @@ export async function getFooterData() {
   }`;
 
   const footerData = await client.fetch(query, {}, options);
-  console.log(footerData);
+
   return footerData;
 }
