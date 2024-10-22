@@ -2,8 +2,7 @@
 
 import { client } from "@/sanity/client";
 
-export async function addNewsletter(data: FormData) {
-    const email = data.get("email") as string;
+export async function addNewsletter({ email }: { email: string }) {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
