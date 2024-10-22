@@ -24,6 +24,7 @@ export default function Newsletter() {
             });
             setEmail('');
         } catch (error) {
+            console.error(error);
             toast({
                 title: 'Error',
                 description: "Failed to subscribe to newsletter",

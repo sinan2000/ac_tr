@@ -1,6 +1,5 @@
 import 'server-only';
 import { client } from "@/sanity/client";
-import { SanityDocument } from 'next-sanity';
 
 const options = { next: { revalidate: 10 } };
 
@@ -85,4 +84,22 @@ export async function getFooterData() {
   const footerData = await client.fetch(query, {}, options);
 
   return footerData;
+}
+
+export async function getAboutUsData() {
+  const query = `*[_type == "aboutUsPage"]{
+    _id,
+    title,
+    subtitle,
+    description,
+    images[]{
+      asset->{
+        url,
+        metadata
+      }
+    }
+  }`;
+
+  const aboutUsData = await client.fetch(query, {}, options);
+  return aboutUsData;
 }

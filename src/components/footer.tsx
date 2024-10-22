@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaWhatsapp, FaMapMarkerAlt, FaPhone, FaMailBulk } from 'react-icons/fa';
 import { getFooterData } from "@/sanity/lib/queries";
 import { SanityDocument } from "next-sanity";

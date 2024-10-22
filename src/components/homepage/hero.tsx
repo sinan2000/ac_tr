@@ -1,5 +1,5 @@
 import { Button } from "../ui/button";
-import { ArrowRight, ShoppingCart } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import HeroImages from "./hero-images";
 import { getHomepageData } from "@/sanity/lib/queries";
 import { SanityDocument } from "next-sanity";

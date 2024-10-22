@@ -16,7 +16,7 @@ export default function HeroImages({ heroImages }: { heroImages: { src: string; 
         }, 5000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [heroImages.length]);
 
     return (
         <div className="w-full md:w-1/2 h-[300px] md:h-[400px] relative mt-8 md:mt-0">
