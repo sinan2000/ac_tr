@@ -72,3 +72,17 @@ export async function getChooseUsData() {
     cards: chooseUs?.cards || []
   }
 }
+
+export async function getAboutUsData() {
+  const query = `*[_type == "aboutUs"][0]{
+    title,
+    description,
+    button{
+      text,
+      url
+    }
+  }`;
+
+  const aboutUs = await client.fetch(query, {}, options);
+  return aboutUs;
+}

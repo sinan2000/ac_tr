@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Star, Truck, Award, DollarSign, Building2, ArrowRight } from 'lucide-react'
 import Hero from '@/components/homepage/hero'
 import ChooseUs from '@/components/homepage/choose-us'
+import AboutUs from '@/components/homepage/about-us'
 
 export default function Homepage() {
   return (
@@ -16,81 +17,7 @@ export default function Homepage() {
         {/* Product Categories */}
         <ChooseUs />
         {/* Featured Products */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-semibold text-center mb-12">Featured Products</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {['Premium Surgical Gloves', 'N95 Respirator Masks', 'Advanced IV Kit'].map((product, index) => (
-                <Card key={index}>
-                  <CardHeader>
-                    <Image
-                      src={`/placeholder.svg?height=200&width=300`}
-                      alt={product}
-                      width={300}
-                      height={200}
-                      className="w-full h-48 object-cover rounded-t-lg"
-                    />
-                  </CardHeader>
-                  <CardContent>
-                    <CardTitle className="mb-2">{product}</CardTitle>
-                    <p className="text-gray-600 mb-4">High-quality disposable medical equipment</p>
-                    <p className="font-bold text-lg mb-2">$XX.XX</p>
-                  </CardContent>
-                  <CardFooter>
-                    <Button className="w-full">Add to Cart</Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="bg-gray-100 py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-semibold text-center mb-12">What Our Customers Say</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                { name: 'Dr. Jane Smith', role: 'Chief Surgeon', text: 'ACTR Medical provides top-notch disposable equipment that we rely on daily.' },
-                { name: 'John Doe', role: 'Hospital Administrator', text: 'Excellent quality and timely delivery. ACTR Medical is our go-to supplier.' },
-                { name: 'Sarah Johnson', role: 'Nurse Practitioner', text: 'The convenience and reliability of ACTR Medical\'s products make our job easier.' }
-              ].map((testimonial, index) => (
-                <Card key={index} className="bg-white">
-                  <CardHeader>
-                    <div className="flex items-center mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="mb-4">"{testimonial.text}"</p>
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-gray-600">{testimonial.role}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* About ACTR Medical */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-semibold text-center mb-8">About ACTR Medical</h2>
-            <div className="max-w-3xl mx-auto text-center">
-              <p className="mb-6">
-                ACTR Medical has been a trusted provider of high-quality disposable medical equipment for over two decades.
-                Our commitment to excellence and innovation has made us a preferred partner for healthcare professionals worldwide.
-              </p>
-              <p className="mb-6">
-                We pride ourselves on our ISO 13485 certification and FDA registration, ensuring that all our products meet the
-                highest standards of quality and safety.
-              </p>
-              <Button variant="outline">Learn More About Us</Button>
-            </div>
-          </div>
-        </section>
+        <AboutUs />
 
         {/* News / Blog Section */}
         <section className="bg-gray-100 py-16">
