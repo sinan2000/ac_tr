@@ -3,12 +3,13 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { SanityDocument } from "next-sanity";
+import MobileMenu from "./mobilenav";
 
 export default async function Navbar() {
     const { logo, menuItems } = await getNavbarData();
 
     return (
-        <header className="bg-white shadow-sm">
+        <header className="bg-white shadow-sm sticky top-0 left-0 w-full z-50">
             <div className="container mx-auto px-4 py-4 flex justify-between items-center">
                 {logo ? (
                     <Image
@@ -17,7 +18,7 @@ export default async function Navbar() {
                         width={200}
                         height={50}
                     />) : null}
-                <nav className="hidden md:block">
+                <nav className="hidden md:block font-montserrat">
                     <ul className="flex space-x-6">
                         {menuItems.map((item: SanityDocument) => (
                             <li key={item.title}>
@@ -63,7 +64,8 @@ export default async function Navbar() {
                         ))}
                     </ul>
                 </nav>
-                <Button className="md:hidden">Menu</Button>
+
+                <MobileMenu menuItems={menuItems} />
             </div>
         </header>
     )
