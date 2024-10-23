@@ -4,6 +4,7 @@ import { toUrlFriendlyString } from '@/lib/utils';
 import { PortableText, SanityDocument } from 'next-sanity';
 import { notFound } from 'next/navigation';
 import OtherServices from './carousel';
+import Breadcrumbs from '@/components/breadcrumbs';
 
 export default async function ServiceDetailPage({ params }: { params: { slug: string } }) {
     const services = await getServicesData();
@@ -19,6 +20,7 @@ export default async function ServiceDetailPage({ params }: { params: { slug: st
     return (
         <div className="min-h-screen bg-gray-50">
             <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+                <Breadcrumbs first={{ name: 'Services', link: '/services' }} second={currentService.title} />
                 <div className="bg-white shadow overflow-hidden sm:rounded-lg">
                     <div className="px-4 py-5 sm:px-6">
                         <h2 className="text-3xl font-bold text-gray-900">{currentService.title}</h2>

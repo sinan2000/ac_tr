@@ -5,9 +5,8 @@ for setting api to send a mail to everyone from newsletter
 
 v1 to do
 --------
-0a. recheck all content - for headers, use montserrat font;
-0b. breadcrumbs setup on all pages, make component
-1. create services dynamic page + generateStaticParams
+0. check portable texts fix endline
+1. retusezi dynamic service page ui
 2. finish about us pages + create about us dynamic page + generateStaticParams
 3. make services a dropdown with all items
 4. make contact, loading and not found pages
@@ -22,6 +21,7 @@ eg. size, color, etc.
 on pages.
 12. favicon
 13. solve search console issues
+reengineer admin schemas, centralize everything and link to pages instead of links
 * products - categories - then products
 
 v2 to do
