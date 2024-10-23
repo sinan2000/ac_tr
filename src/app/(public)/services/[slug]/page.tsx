@@ -34,27 +34,29 @@ export default async function ServiceDetailPage({ params }: { params: { slug: st
                         </dl>
                     </div>
                     <div className="px-4 py-5 sm:px-6">
-                        <Image
-                            src={currentService.images[0].asset.url}
-                            alt="Global supply chain and risk management illustration"
-                            width={1200}
-                            height={600}
-                            layout="responsive"
-                            className="rounded-lg"
-                        />
+                        {currentService.images && currentService.images.length > 0 && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {currentService.images.map((image: any, index: number) => (
+                                    <Image
+                                        key={index}
+                                        src={image.asset.url}
+                                        alt={`${currentService.title} image ${index + 1}`}
+                                        width={600}
+                                        height={400}
+                                        layout="responsive"
+                                        className="rounded-lg"
+                                    />
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
 
                 <div className="mt-12">
                     <h3 className="text-2xl font-bold text-gray-900 mb-6">Explore Other Services</h3>
-                    <div className="relative">
-                        <div className="overflow-hidden">
-                            <OtherServices otherServices={otherServices} />
-                        </div>
-                    </div>
+                    <OtherServices otherServices={otherServices} />
                 </div>
             </main>
-
         </div>
     )
 }
