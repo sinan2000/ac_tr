@@ -54,7 +54,7 @@ export default function ProductDetailPage() {
             <header className="bg-white shadow">
                 <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                     <Image
-                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-mH0hHo7HWAjJQy7qt6WXP1ZCI7TLLi.png"
+                        src="/logo.png"
                         alt="ACTR Medical Logo"
                         width={150}
                         height={40}

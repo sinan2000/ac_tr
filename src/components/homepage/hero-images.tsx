@@ -36,6 +36,7 @@ export default function HeroImages({ heroImages }: { heroImages: { src: string; 
                         alt={image.alt}
                         fill
                         className="object-cover rounded-lg shadow-lg"
+                        priority
                     />
                 </div>
             ))}

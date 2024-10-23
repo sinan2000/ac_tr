@@ -24,7 +24,7 @@ export default async function Footer() {
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+                        <h3 className="text-lg font-semibold mb-4 font-montserrat">Quick Links</h3>
                         <ul className="space-y-2">
                             {links.map((link: SanityDocument, index: number) => (
                                 <li key={index}>
@@ -37,7 +37,7 @@ export default async function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+                        <h3 className="text-lg font-semibold mb-4 font-montserrat">Contact Us</h3>
                         <div className="flex items-center mb-3">
                             <FaMapMarkerAlt className="w-6 h-6 mr-2" />
                             <p>{contact.address}</p>
@@ -52,7 +52,7 @@ export default async function Footer() {
                         </div>
                     </div>
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
+                        <h3 className="text-lg font-semibold mb-4 font-montserrat">Follow Us</h3>
                         <div className="flex space-x-4">
                             {social.map((link: SanityDocument, index: number) => {
                                 const IconComponent = socialMap[link.platform as keyof typeof socialMap];
@@ -65,11 +65,11 @@ export default async function Footer() {
                         </div>
                     </div>
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
+                        <h3 className="text-lg font-semibold mb-4 font-montserrat">Newsletter</h3>
                         <Newsletter />
                     </div>
                 </div>
-                <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+                <div className="border-t border-gray-700 mt-8 pt-8 text-center font-montserrat">
                     <p>&copy; {new Date().getFullYear()} ACTR Medical. All rights reserved.</p>
                 </div>
             </div>

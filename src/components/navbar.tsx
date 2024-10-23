@@ -17,6 +17,7 @@ export default async function Navbar() {
                         alt="ACTR Logo"
                         width={200}
                         height={50}
+                        priority
                     />) : null}
                 <nav className="hidden md:block font-montserrat">
                     <ul className="flex space-x-6">

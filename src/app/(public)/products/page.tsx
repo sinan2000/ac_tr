@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -65,7 +66,7 @@ export default function EnhancedProductPage() {
             <header className="bg-white shadow sticky top-0 z-10">
                 <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                     <Image
-                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-mH0hHo7HWAjJQy7qt6WXP1ZCI7TLLi.png"
+                        src="/logo.png"
                         alt="ACTR Medical Logo"
                         width={150}
                         height={40}
@@ -75,7 +76,7 @@ export default function EnhancedProductPage() {
             </header>
 
             <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-                <nav className="text-sm breadcrumbs mb-4">
+                <nav className="text-sm breadcrumbs mb-4" aria-label="Breadcrumbs">
                     <ul className="flex items-center space-x-2">
                         <li><Link href="/" className="text-blue-600 hover:underline">Home</Link></li>
                         <ChevronRight className="w-4 h-4" />

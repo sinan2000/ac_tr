@@ -11,7 +11,7 @@ export default async function AboutUs() {
     return (
         <section className="py-16">
             <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-semibold text-center mb-8">{title}</h2>
+                <h2 className="text-3xl font-semibold text-center mb-8 font-montserrat">{title}</h2>
                 <div className="max-w-3xl mx-auto text-center prose">
                     {Array.isArray(description) && <PortableText value={description} />}
                 </div>

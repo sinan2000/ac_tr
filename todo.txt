@@ -21,11 +21,12 @@ eg. size, color, etc.
 11. optimization - webhook for sending mail, another webhook for tag revalidation
 on pages.
 12. favicon
-13. localization - turkish and french
+13. solve search console issues
 * products - categories - then products
 
 v2 to do
 --------
+0. localization - turkish and french
 1. cart functionality
 2. online payments
 3. visual content edit real time
