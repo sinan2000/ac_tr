@@ -144,3 +144,36 @@ export async function getNewsData() {
     imageUrl: item.image ? urlFor(item.image).url() : '',
   }));
 }
+
+export async function getCategoriesData() {
+  const fetchAllCategoriesQuery = `*[_type == "category"] | order(title asc) {
+    _id,
+    title,
+    description
+  }`;
+
+  const categories = await client.fetch(fetchAllCategoriesQuery, {}, options);
+
+  return categories;
+}
+
+export async function getProductsData() {
+  const fetchAllProductsQuery = `*[_type == "product"] | order(title asc) {
+    _id,
+    title,
+    description,
+    price,
+    bestseller,
+    "images": images[].asset->url,
+    referenceNumber,
+    features,
+    "category": category->{
+      _id,
+      title
+    }
+  }`;
+
+  const products = await client.fetch(fetchAllProductsQuery, {}, options);
+
+  return products;
+}

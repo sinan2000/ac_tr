@@ -1,14 +1,15 @@
-'use client';
-import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Slider } from "@/components/ui/slider"
 import { Checkbox } from "@/components/ui/checkbox"
-import { ChevronRight, Star } from 'lucide-react'
+import { Star } from 'lucide-react'
+import Breadcrumbs from '@/components/breadcrumbs';
+import { getCategoriesData, getProductsData } from '@/sanity/lib/queries'
+import { SanityDocument } from 'next-sanity'
+import PriceRangeSlider from '@/components/products/pricerange'
+import SearchBar from '@/components/products/searchbar'
 
 const categories = [
     { id: 'all', name: 'All Products' },
@@ -30,65 +31,20 @@ const products = [
     // Add more products as needed to reach around 50 items
 ]
 
-export default function EnhancedProductPage() {
-    const [activeCategory, setActiveCategory] = useState('all')
-    const [searchTerm, setSearchTerm] = useState('')
-    const [priceRange, setPriceRange] = useState([0, 100])
-    const [showBestSellers, setShowBestSellers] = useState(false)
-    const [sortBy, setSortBy] = useState('name')
-    const [filteredProducts, setFilteredProducts] = useState(products)
+export default async function EnhancedProductPage({ params } : { params: { category?: string; searchTerm?: string; minPrice?: string; bestSeller?: boolean } }) {
+    const { category = '', searchTerm = '', minPrice = '0', bestSeller = false } = params;
 
-    useEffect(() => {
-        let filtered = products.filter(product =>
-            (activeCategory === 'all' || product.category === activeCategory) &&
-            product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-            product.price >= priceRange[0] && product.price <= priceRange[1] &&
-            (!showBestSellers || product.isBestSeller)
-        )
+    const allProducts = await getProductsData();
+    const categories = await getCategoriesData();
 
-        switch (sortBy) {
-            case 'price-asc':
-                filtered.sort((a, b) => a.price - b.price)
-                break
-            case 'price-desc':
-                filtered.sort((a, b) => b.price - a.price)
-                break
-            case 'name':
-            default:
-                filtered.sort((a, b) => a.name.localeCompare(b.name))
-        }
+    const min = parseFloat(minPrice);
 
-        setFilteredProducts(filtered)
-    }, [activeCategory, searchTerm, priceRange, showBestSellers, sortBy])
+    const filteredProducts = allProducts;
 
     return (
         <div className="min-h-screen bg-gray-50">
-            <header className="bg-white shadow sticky top-0 z-10">
-                <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-                    <Image
-                        src="/logo.png"
-                        alt="ACTR Medical Logo"
-                        width={150}
-                        height={40}
-                    />
-                    <h1 className="text-2xl font-bold text-gray-900">Our Products</h1>
-                </div>
-            </header>
-
             <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-                <nav className="text-sm breadcrumbs mb-4" aria-label="Breadcrumbs">
-                    <ul className="flex items-center space-x-2">
-                        <li><Link href="/" className="text-blue-600 hover:underline">Home</Link></li>
-                        <ChevronRight className="w-4 h-4" />
-                        <li><Link href="/products" className="text-blue-600 hover:underline">Products</Link></li>
-                        {activeCategory !== 'all' && (
-                            <>
-                                <ChevronRight className="w-4 h-4" />
-                                <li className="text-gray-600">{categories.find(c => c.id === activeCategory)?.name}</li>
-                            </>
-                        )}
-                    </ul>
-                </nav>
+                <Breadcrumbs first={{name: 'Products'}} />
 
                 <div className="flex flex-col lg:flex-row gap-6">
                     <aside className="lg:w-1/4">
@@ -97,14 +53,17 @@ export default function EnhancedProductPage() {
                             <div className="space-y-4">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                                    <Select value={activeCategory} onValueChange={setActiveCategory}>
+                                    <Select 
+                                        value={category} 
+                                        //onValueChange={(e) => window.location.href = `?category=${e.target.value}&searchTerm=${searchTerm}&minPrice=${min}`}>
+                                    >
                                         <SelectTrigger className="w-full">
                                             <SelectValue placeholder="Select category" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            {categories.map((category) => (
-                                                <SelectItem key={category.id} value={category.id}>
-                                                    {category.name}
+                                            {categories.map((category: SanityDocument) => (
+                                                <SelectItem key={category.title} value={category.title}>
+                                                    {category.title}
                                                 </SelectItem>
                                             ))}
                                         </SelectContent>
@@ -112,24 +71,13 @@ export default function EnhancedProductPage() {
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
-                                    <Slider
-                                        min={0}
-                                        max={100}
-                                        step={1}
-                                        value={priceRange}
-                                        onValueChange={setPriceRange}
-                                        className="mb-2"
-                                    />
-                                    <div className="flex justify-between text-sm text-gray-600">
-                                        <span>${priceRange[0]}</span>
-                                        <span>${priceRange[1]}</span>
-                                    </div>
+                                    <PriceRangeSlider minPrice={min} />
                                 </div>
                                 <div className="flex items-center space-x-2">
                                     <Checkbox
                                         id="best-sellers"
-                                        checked={showBestSellers}
-                                        onCheckedChange={() => setShowBestSellers}
+                                        checked={bestSeller}
+                                        //onCheckedChange={(e) => window.event.href = `?category=${category}&searchTerm=${searchTerm}&minPrice=${min}&bestSeller=${e.target.checked}`}
                                     />
                                     <label
                                         htmlFor="best-sellers"
@@ -144,33 +92,17 @@ export default function EnhancedProductPage() {
 
                     <div className="lg:w-3/4">
                         <div className="flex flex-col sm:flex-row justify-between items-center mb-6 space-y-4 sm:space-y-0 sm:space-x-4">
-                            <Input
-                                type="search"
-                                placeholder="Search products..."
-                                className="w-full sm:w-64"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
-                            <Select value={sortBy} onValueChange={setSortBy}>
-                                <SelectTrigger className="w-full sm:w-48">
-                                    <SelectValue placeholder="Sort by" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="name">Name</SelectItem>
-                                    <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                                    <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                                </SelectContent>
-                            </Select>
+                            <SearchBar searchTerm={searchTerm} />
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {filteredProducts.map((product) => (
+                            {filteredProducts.map((product: SanityDocument) => (
                                 <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
                                     <CardContent className="p-4">
                                         <div className="relative h-48 mb-4">
                                             <Image
-                                                src={product.image}
-                                                alt={product.name}
+                                                src={product.images[0]}
+                                                alt={product.title}
                                                 layout="fill"
                                                 objectFit="cover"
                                                 className="rounded-md"
@@ -182,7 +114,7 @@ export default function EnhancedProductPage() {
                                                 </div>
                                             )}
                                         </div>
-                                        <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
+                                        <h3 className="text-lg font-semibold mb-2">{product.title}</h3>
                                         <p className="text-sm text-gray-600 mb-4">{product.description}</p>
                                         <div className="flex justify-between items-center">
                                             <span className="font-bold text-lg">${product.price.toFixed(2)}</span>
