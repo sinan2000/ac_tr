@@ -18,6 +18,14 @@ export const homePage = defineType({
             to: [{ type: 'heroSection' }],
         }),
         defineField({
+            name: 'favoriteCategories',
+            title: 'Favorite Categories',
+            type: 'array',
+            of: [{ type: 'reference', to: [{ type: 'category' }] }],
+            description: 'Select up to 4 categories to feature on the home page.',
+            validation: (Rule) => Rule.max(4),
+        }),
+        defineField({
             name: 'whyChooseUs',
             title: 'Why Choose Us Section',
             type: 'reference',

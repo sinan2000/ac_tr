@@ -59,8 +59,14 @@ export async function getHomepageData() {
         text,
         url
       }
-    }
-  }`;
+    },
+    favoriteCategories[]->{
+    _id,
+    title,
+    description,
+    "imageUrl": image.asset->url
+  }
+}`;
 
   const homePageData = await client.fetch(query, {}, options);
   return homePageData;

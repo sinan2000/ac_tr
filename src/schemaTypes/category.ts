@@ -17,5 +17,11 @@ export const category = defineType({
             type: 'text',
             description: 'Optional description of the category',
         }),
+        defineField({
+            name: 'image',
+            title: 'Image',
+            type: 'image',
+            validation: (Rule) => Rule.required(),
+        })
     ],
 });

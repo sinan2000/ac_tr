@@ -15,8 +15,6 @@ export default async function AboutUsPage({ params } : { params: { slug: string 
 
     const page = pages.filter((page: SanityDocument) => toUrlFriendlyString(page.title) === slug)[0]
 
-    console.log(page.images);
-
     if (!page)
         notFound();
 
