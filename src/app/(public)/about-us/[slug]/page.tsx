@@ -85,17 +85,17 @@ export default async function AboutUsPage({ params } : { params: { slug: string 
                             </TabsList>
                             <TabsContent value="expertise">
                                 <p className="text-lg text-gray-700">
-                                    Our team comprises industry veterans with decades of combined experience in medical product sourcing, quality control, and international trade. We leverage this expertise to navigate complex regulatory landscapes and identify the best products for our clients' needs.
+                                    Our team comprises industry veterans with decades of combined experience in medical product sourcing, quality control, and international trade. We leverage this expertise to navigate complex regulatory landscapes and identify the best products for our clients&apos; needs.
                                 </p>
                             </TabsContent>
                             <TabsContent value="quality">
                                 <p className="text-lg text-gray-700">
-                                    Quality is at the heart of everything we do. We partner only with manufacturers who meet stringent international standards. Our rigorous quality control processes ensure that every product we source meets or exceeds industry regulations and our clients' expectations.
+                                    Quality is at the heart of everything we do. We partner only with manufacturers who meet stringent international standards. Our rigorous quality control processes ensure that every product we source meets or exceeds industry regulations and our clients&apos; expectations.
                                 </p>
                             </TabsContent>
                             <TabsContent value="support">
                                 <p className="text-lg text-gray-700">
-                                    We believe in building long-term relationships with our clients. Our dedicated support team is always ready to assist with inquiries, provide product information, and offer post-sale support. We're committed to your success every step of the way.
+                                    We believe in building long-term relationships with our clients. Our dedicated support team is always ready to assist with inquiries, provide product information, and offer post-sale support. We&apos;re committed to your success every step of the way.
                                 </p>
                             </TabsContent>
                         </Tabs>

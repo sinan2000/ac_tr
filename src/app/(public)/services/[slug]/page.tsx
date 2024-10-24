@@ -38,7 +38,7 @@ export default async function ServiceDetailPage({ params }: { params: { slug: st
                     <div className="px-4 py-5 sm:px-6">
                         {currentService.images && currentService.images.length > 0 && (
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {currentService.images.map((image: any, index: number) => (
+                                {currentService.images.map((image: SanityDocument, index: number) => (
                                     <Image
                                         key={index}
                                         src={image.asset.url}

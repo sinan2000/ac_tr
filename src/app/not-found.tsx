@@ -20,7 +20,7 @@ export default async function NotFoundPage() {
                 <h1 className="text-4xl font-bold text-gray-900 mb-4 font-montserrat">404</h1>
                 <h2 className="text-2xl font-semibold text-gray-700 mb-4 font-montserrat">Page Not Found</h2>
                 <p className="text-gray-600 mb-8">
-                    We're sorry, the page you're looking for doesn't exist or has been moved.
+                    We&apos;re sorry, the page you&apos;re looking for doesn&apos;t exist or has been moved.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                     <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
