@@ -1,5 +1,7 @@
 import 'server-only';
 import { client } from "@/sanity/client";
+import imageUrlBuilder from '@sanity/image-url';
+import { SanityDocument } from 'next-sanity';
 
 const options = { next: { revalidate: 10 } };
 
@@ -116,6 +118,29 @@ export async function getServicesData() {
   }`;
 
   const services = await client.fetch(query, {}, options);
-  console.log(services);
   return services;
+}
+
+const builder = imageUrlBuilder(client);
+
+function urlFor(source: string) {
+  return builder.image(source);
+}
+
+export async function getNewsData() {
+  const query = `*[_type == "newsPage" && publishingDate <= now()] | order(publishingDate desc) {
+  _id,
+  title,
+  description,
+  image,
+  publishingDate
+}
+`;
+
+  const news = await client.fetch(query, {}, options);
+
+  return news.map((item: SanityDocument) => ({
+    ...item,
+    imageUrl: item.image ? urlFor(item.image).url() : '',
+  }));
 }

@@ -4,6 +4,11 @@ making an order mail
 for setting api to send a mail to everyone from newsletter
 
 v1 to do
+
+PRIMA OARA FACI TOATE SCHEMELE ADMIN PAGE OPTIMIZATE
+APOI REZOLVI UI SERVER SIDE PAGES
+
+
 --------
 0. check portable texts fix endline
 1. retusezi dynamic service page ui
