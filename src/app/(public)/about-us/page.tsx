@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Globe, Search, ShieldCheck, Truck, Settings, DollarSign, ArrowRight, Home, Award, Network, PhoneCall } from 'lucide-react'
 import { getAboutUsData } from '@/sanity/lib/queries'
 import { PortableText, SanityDocument } from 'next-sanity'
+import { toUrlFriendlyString } from '@/lib/utils'
 
 export default async function AboutUsPage() {
     const pages = await getAboutUsData();
@@ -39,9 +40,11 @@ export default async function AboutUsPage() {
                                     <div className="text-lg mb-6">
                                         <PortableText value={page.description[0]} />
                                     </div>
-                                    <Button size="lg" className="mt-4">
-                                        Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                                    </Button>
+                                    <Link href={`/about-us/${toUrlFriendlyString(page.title)}`}>
+                                        <Button size="lg" className="mt-4">
+                                            Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                                        </Button>
+                                    </Link>
                                 </div>
                                 <div className="lg:w-1/2 p-4 lg:p-0">
                                     <Image
